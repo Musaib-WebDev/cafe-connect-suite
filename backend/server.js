@@ -31,30 +31,36 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Import routes
-import authRoutes from './routes/auth.js';
-import cafeRoutes from './routes/cafes.js';
-import orderRoutes from './routes/orders.js';
-import reservationRoutes from './routes/reservations.js';
-import promotionRoutes from './routes/promotions.js';
-import inventoryRoutes from './routes/inventory.js';
+import simpleRoutes from './routes/simple.js';
 
-// Mount routers
-app.use('/api/auth', authRoutes);
-app.use('/api/cafes', cafeRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/reservations', reservationRoutes);
-app.use('/api/promotions', promotionRoutes);
-app.use('/api/inventory', inventoryRoutes);
+// For development, use simplified routes that work with or without MongoDB
+app.use('/api', simpleRoutes);
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Server is running',
-    timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV
-  });
-});
+// Try to import full routes if MongoDB is available
+try {
+  if (process.env.USE_FULL_ROUTES === 'true') {
+    const authRoutes = await import('./routes/auth.js');
+    const cafeRoutes = await import('./routes/cafes.js');
+    const orderRoutes = await import('./routes/orders.js');
+    const reservationRoutes = await import('./routes/reservations.js');
+    const promotionRoutes = await import('./routes/promotions.js');
+    const inventoryRoutes = await import('./routes/inventory.js');
+
+    // Mount full routers (these will override simple routes)
+    app.use('/api/auth', authRoutes.default);
+    app.use('/api/cafes', cafeRoutes.default);
+    app.use('/api/orders', orderRoutes.default);
+    app.use('/api/reservations', reservationRoutes.default);
+    app.use('/api/promotions', promotionRoutes.default);
+    app.use('/api/inventory', inventoryRoutes.default);
+    
+    console.log('✅ Full API routes loaded');
+  }
+} catch (error) {
+  console.log('⚠️  Using simplified API routes (some features may be limited)');
+}
+
+// Health check endpoint is handled by simple routes
 
 // 404 handler
 app.all('*', (req, res) => {

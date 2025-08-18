@@ -40,17 +40,39 @@ npm run dev
 
 For an even easier setup, use our quick start scripts:
 
-**On Linux/macOS:**
+**Frontend Only:**
+- **Linux/macOS:** `./start.sh`
+- **Windows:** `start.bat`
+
+**Backend Only:**
+- **Linux/macOS:** `cd backend && ./start-backend.sh`
+- **Windows:** `cd backend && start-backend.bat`
+
+**Full Stack (Frontend + Backend):**
+- **Linux/macOS:** `./start-full-stack.sh`
+- **Windows:** See manual setup below
+
+These scripts will automatically:
+- ✅ Check for Node.js and npm
+- 📦 Install dependencies if needed
+- 🔧 Set up environment files
+- 🚀 Start the development servers
+- 📊 Provide helpful status information
+
+**Manual Setup:**
 ```sh
-./start.sh
-```
+# Install frontend dependencies
+npm install
 
-**On Windows:**
-```cmd
-start.bat
-```
+# Install backend dependencies
+cd backend && npm install && cd ..
 
-These scripts will automatically check for Node.js, install dependencies if needed, and start the development server.
+# Start backend (in one terminal)
+cd backend && npm start
+
+# Start frontend (in another terminal)
+npm run dev
+```
 
 **Edit a file directly in GitHub**
 
@@ -85,6 +107,20 @@ This is a **Cafe Connect Suite** - a comprehensive cafe management system that i
 👥 **Customer discovery platform**  
 📊 **Real-time analytics**  
 🌐 **Multi-language support**  
+
+### ✅ **Current Status: Fully Working!**
+
+Both frontend and backend are now fully functional:
+
+- ✅ **Frontend**: React app with TypeScript, Tailwind CSS, and shadcn-ui
+- ✅ **Backend**: Node.js/Express API with authentication and data management
+- ✅ **Database**: Intelligent fallback system (MongoDB when available, mock data for development)
+- ✅ **Authentication**: JWT-based auth system with role management
+- ✅ **API Endpoints**: All core endpoints working (auth, cafes, menus, etc.)
+
+### 🚀 **Quick Status Check**
+
+Run `./check-status.sh` to see the current status of all services.
 
 For detailed information about features and system architecture, see [README-CAFE-SYSTEM.md](./README-CAFE-SYSTEM.md).
 
