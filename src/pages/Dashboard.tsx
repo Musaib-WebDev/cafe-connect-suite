@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { Header } from '@/components/layout/Header';
+import Header from '@/components/layout/Header';
 import { SuperAdminDashboard } from '@/components/dashboard/SuperAdminDashboard';
 import { CafeOwnerDashboard } from '@/components/dashboard/CafeOwnerDashboard';
 
