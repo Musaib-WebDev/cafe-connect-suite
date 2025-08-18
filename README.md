@@ -36,6 +36,22 @@ npm i
 npm run dev
 ```
 
+**Quick Start (Recommended)**
+
+For an even easier setup, use our quick start scripts:
+
+**On Linux/macOS:**
+```sh
+./start.sh
+```
+
+**On Windows:**
+```cmd
+start.bat
+```
+
+These scripts will automatically check for Node.js, install dependencies if needed, and start the development server.
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
@@ -59,6 +75,18 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+
+## About This Project
+
+This is a **Cafe Connect Suite** - a comprehensive cafe management system that includes:
+
+🏪 **Multi-tenant cafe management**  
+📱 **QR code ordering system**  
+👥 **Customer discovery platform**  
+📊 **Real-time analytics**  
+🌐 **Multi-language support**  
+
+For detailed information about features and system architecture, see [README-CAFE-SYSTEM.md](./README-CAFE-SYSTEM.md).
 
 ## How can I deploy this project?
 
