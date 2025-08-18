@@ -201,70 +201,70 @@ export const CafeOwnerDashboard = () => {
       </Card>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
         <Card className="shadow-soft hover:shadow-medium transition-all duration-300 cursor-pointer group">
-          <CardHeader>
-            <CardTitle className="flex items-center group-hover:text-accent transition-colors">
-              <Plus className="h-5 w-5 mr-2" />
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center group-hover:text-accent transition-colors text-sm lg:text-base">
+              <Plus className="h-4 w-4 lg:h-5 lg:w-5 mr-2" />
               Add Menu Item
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-xs lg:text-sm">
               Create new food or drink items
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <Button className="w-full" variant="accent">
+          <CardContent className="pt-0">
+            <Button className="w-full" variant="accent" size="sm">
               Add Item
             </Button>
           </CardContent>
         </Card>
 
         <Card className="shadow-soft hover:shadow-medium transition-all duration-300 cursor-pointer group">
-          <CardHeader>
-            <CardTitle className="flex items-center group-hover:text-accent transition-colors">
-              <QrCode className="h-5 w-5 mr-2" />
-              Generate QR
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center group-hover:text-accent transition-colors text-sm lg:text-base">
+              <QrCode className="h-4 w-4 lg:h-5 lg:w-5 mr-2" />
+              QR Codes
             </CardTitle>
-            <CardDescription>
-              Create QR codes for tables
+            <CardDescription className="text-xs lg:text-sm">
+              Manage table QR codes
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <Button className="w-full" variant="outline">
-              Generate
+          <CardContent className="pt-0">
+            <Button className="w-full" variant="outline" size="sm">
+              Manage QR
             </Button>
           </CardContent>
         </Card>
 
         <Card className="shadow-soft hover:shadow-medium transition-all duration-300 cursor-pointer group">
-          <CardHeader>
-            <CardTitle className="flex items-center group-hover:text-accent transition-colors">
-              <TrendingUp className="h-5 w-5 mr-2" />
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center group-hover:text-accent transition-colors text-sm lg:text-base">
+              <TrendingUp className="h-4 w-4 lg:h-5 lg:w-5 mr-2" />
               Analytics
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-xs lg:text-sm">
               View detailed sales data
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <Button className="w-full" variant="outline">
+          <CardContent className="pt-0">
+            <Button className="w-full" variant="outline" size="sm">
               View Reports
             </Button>
           </CardContent>
         </Card>
 
         <Card className="shadow-soft hover:shadow-medium transition-all duration-300 cursor-pointer group">
-          <CardHeader>
-            <CardTitle className="flex items-center group-hover:text-accent transition-colors">
-              <Coffee className="h-5 w-5 mr-2" />
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center group-hover:text-accent transition-colors text-sm lg:text-base">
+              <Coffee className="h-4 w-4 lg:h-5 lg:w-5 mr-2" />
               Menu
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-xs lg:text-sm">
               Manage your full menu
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <Button className="w-full" variant="outline">
+          <CardContent className="pt-0">
+            <Button className="w-full" variant="outline" size="sm">
               Manage Menu
             </Button>
           </CardContent>
