@@ -51,7 +51,13 @@ const RegisterPage: React.FC = () => {
   const onSubmit = async (data: RegisterFormData) => {
     try {
       const { confirmPassword, ...userData } = data;
-      await registerUser(userData);
+      await registerUser({
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
+        role: userData.role,
+        phone: userData.phone
+      });
       toast.success('Registration successful!');
       navigate('/');
     } catch (error: any) {

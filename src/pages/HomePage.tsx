@@ -92,7 +92,7 @@ const HomePage: React.FC = () => {
 
   const isOpenNow = (operatingHours: Cafe['operatingHours']) => {
     const now = new Date();
-    const currentDay = now.toLocaleDateString('en-US', { weekday: 'lowercase' });
+    const currentDay = now.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
     const currentTime = now.toTimeString().slice(0, 5);
     
     const todayHours = operatingHours[currentDay];

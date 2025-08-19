@@ -5,7 +5,7 @@ interface User {
   id: string;
   name: string;
   email: string;
-  role: 'customer' | 'cafeowner' | 'admin';
+  role: 'customer' | 'cafeowner' | 'admin' | 'super_admin' | 'cafe_owner';
   phone?: string;
   avatar?: string;
   preferences?: {
@@ -16,6 +16,11 @@ interface User {
     };
   };
   cafe?: any;
+  subscription?: {
+    plan: string;
+    status: string;
+    expiresAt: string;
+  };
 }
 
 interface AuthState {
@@ -92,6 +97,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
 
 interface AuthContextType {
   state: AuthState;
+  user: User | null;
   login: (email: string, password: string) => Promise<void>;
   register: (userData: {
     name: string;
@@ -211,6 +217,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const value: AuthContextType = {
     state,
+    user: state.user,
     login,
     register,
     logout,

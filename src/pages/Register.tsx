@@ -43,7 +43,12 @@ export default function Register() {
     setLoading(true);
 
     try {
-      await register(email, password, role);
+      await register({ 
+        name: email.split('@')[0], // Use email prefix as default name
+        email, 
+        password, 
+        role 
+      });
       toast({
         title: "Account Created!",
         description: "Welcome to CafeFlow. Your account has been created successfully.",
