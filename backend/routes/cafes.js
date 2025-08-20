@@ -18,6 +18,8 @@ import menuRoutes from './menu.js';
 import orderRoutes from './orders.js';
 import reservationRoutes from './reservations.js';
 import promotionRoutes from './promotions.js';
+import analyticsRoutes from './analytics.js';
+import qrcodeRoutes from './qrcodes.js';
 
 const router = express.Router();
 
@@ -26,6 +28,8 @@ router.use('/:cafeId/menu', menuRoutes);
 router.use('/:cafeId/orders', orderRoutes);
 router.use('/:cafeId/reservations', reservationRoutes);
 router.use('/:cafeId/promotions', promotionRoutes);
+router.use('/:cafeId/analytics', analyticsRoutes);
+router.use('/:cafeId/qr-codes', qrcodeRoutes);
 
 // Cafe routes
 router.route('/')

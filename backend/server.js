@@ -38,6 +38,9 @@ import reservationRoutes from './routes/reservations.js';
 import promotionRoutes from './routes/promotions.js';
 import inventoryRoutes from './routes/inventory.js';
 
+// Import analytics routes
+import analyticsRoutes from './routes/analytics.js';
+
 // Mount routers
 app.use('/api/auth', authRoutes);
 app.use('/api/cafes', cafeRoutes);
@@ -45,6 +48,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/promotions', promotionRoutes);
 app.use('/api/inventory', inventoryRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

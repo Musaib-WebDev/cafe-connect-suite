@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
+import { SocketProvider } from './contexts/SocketContext';
 import { ThemeProvider } from 'next-themes';
 import Layout from './components/layout/Layout';
+import { ProtectedRoute } from './components/common/ProtectedRoute';
 
 // Import pages
 import Index from './pages/Index';
@@ -35,32 +37,42 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" defaultTheme="light">
         <AuthProvider>
-          <CartProvider>
-            <Router>
-              <Routes>
-                {/* Public routes */}
-                <Route path="/" element={<Layout />}>
-                  <Route index element={<Index />} />
-                  <Route path="home" element={<HomePage />} />
-                  <Route path="login" element={<Login />} />
-                  <Route path="register" element={<Register />} />
-                  <Route path="auth/login" element={<LoginPage />} />
-                  <Route path="auth/register" element={<RegisterPage />} />
-                  
-                  {/* Menu routes */}
-                  <Route path="menu/:cafeId" element={<Menu />} />
-                  
-                  {/* Protected routes */}
-                  <Route path="dashboard" element={<Dashboard />} />
-                  <Route path="settings" element={<CafeSettings />} />
-                  
-                  {/* Catch all route */}
-                  <Route path="404" element={<NotFound />} />
-                  <Route path="*" element={<Navigate to="/404" replace />} />
-                </Route>
-              </Routes>
-            </Router>
-          </CartProvider>
+          <SocketProvider>
+            <CartProvider>
+              <Router>
+                <Routes>
+                  {/* Public routes */}
+                  <Route path="/" element={<Layout />}>
+                    <Route index element={<Index />} />
+                    <Route path="home" element={<HomePage />} />
+                    <Route path="login" element={<Login />} />
+                    <Route path="register" element={<Register />} />
+                    <Route path="auth/login" element={<LoginPage />} />
+                    <Route path="auth/register" element={<RegisterPage />} />
+                    
+                    {/* Menu routes (public for QR code access) */}
+                    <Route path="menu/:cafeId" element={<Menu />} />
+                    
+                    {/* Protected routes */}
+                    <Route path="dashboard" element={
+                      <ProtectedRoute allowedRoles={['super_admin', 'admin', 'cafeowner', 'cafe_owner']}>
+                        <Dashboard />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="settings" element={
+                      <ProtectedRoute allowedRoles={['cafeowner', 'cafe_owner']}>
+                        <CafeSettings />
+                      </ProtectedRoute>
+                    } />
+                    
+                    {/* Catch all route */}
+                    <Route path="404" element={<NotFound />} />
+                    <Route path="*" element={<Navigate to="/404" replace />} />
+                  </Route>
+                </Routes>
+              </Router>
+            </CartProvider>
+          </SocketProvider>
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
